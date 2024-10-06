@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitație de Nuntă</title>
+
+    <!-- Fonturi elegante -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400&family=Lora:wght@600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Resetare stil pentru corpul paginii */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Playfair Display', serif;
+            color: white;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        /* Videoclip de fundal responsiv pentru telefon în modul portret */
+        #background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -1;
+            filter: brightness(50%) blur(3px); /* Luminozitate redusă și efect de blur pentru claritate la text */
+        }
+
+        /* Container pentru detaliile invitației */
+        .invitation-details {
+            position: relative;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.7); /* Fundal semi-transparent */
+            padding: 30px;
+            border-radius: 20px;
+            width: 90%;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7); /* Umbra subtile pentru efect 3D */
+            opacity: 0;
+            animation: fadeIn 2s forwards; /* Animație fade-in */
+        }
+
+        /* Stil pentru titlul invitației */
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3em;
+            margin-bottom: 10px;
+            animation: slideDown 1s ease-out; /* Animație de glisare pentru titlu */
+        }
+
+        /* Stil pentru detalii */
+        p {
+            font-size: 1.3em;
+            line-height: 1.5;
+            margin: 10px 0;
+            opacity: 0;
+            animation: fadeInText 2s forwards 1.5s; /* Animație de fade-in pentru text */
+        }
+
+        /* Separator elegant între secțiuni */
+        .separator {
+            width: 50px;
+            height: 3px;
+            background-color: #fff;
+            margin: 20px auto;
+            animation: slideDown 1s ease-out 0.5s;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+
+        /* Countdown timer */
+        .countdown {
+            font-family: 'Lora', serif;
+            font-size: 1.5em;
+            margin-top: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 10px;
+            animation: fadeIn 2s forwards 2.5s;
+        }
+
+        /* Stil adaptat pentru ecrane mici */
+        @media only screen and (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+            p {
+                font-size: 1.1em;
+            }
+        }
+
+        /* Animații */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInText {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Videoclip de fundal -->
+    <video autoplay muted loop id="background-video">
+        <source src="nunta-videoclip.mp4" type="video/mp4">
+        Browserul tău nu suportă videoclipuri HTML5.
+    </video>
+
+    <!-- Detaliile invitației -->
+    <div class="invitation-details">
+        <h1>Mihaela & Robert</h1>
+        <div class="separator"></div> <!-- Separator elegant -->
+        <p>Vă invităm cu drag să sărbătoriți împreună cu noi în cea mai importantă zi din viața noastră.</p>
+        <p>14 Iunie 2025</p>
+        <p>Restaurantul "Chateau Blanc"</p>
+        <p>Ora: 17:00</p>
+        <p>Vă așteptăm cu mult drag și entuziasm!</p>
+
+        <!-- Countdown Timer -->
+        <div class="countdown">
+            <p>Până la marele eveniment mai sunt:</p>
+            <span id="countdown-timer"></span>
+        </div>
+    </div>
+
+    <script>
+        // Set the date we're counting down to
+        var countDownDate = new Date("June 14, 2025 17:00:00").getTime();
+
+        // Update the count down every 1 second
+        var countdownFunction = setInterval(function() {
+            // Get today's date and time
+            var now = new Date().getTime();
+
+            // Find the distance between now and the count down date
+            var distance = countDownDate - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the result in the element with id="countdown-timer"
+            document.getElementById("countdown-timer").innerHTML = days + " zile " + hours + " ore " +
+                minutes + " minute " + seconds + " secunde ";
+
+            // If the count down is over, write some text
+            if (distance < 0) {
+                clearInterval(countdownFunction);
+                document.getElementById("countdown-timer").innerHTML = "S-a întâmplat deja!";
+            }
+        }, 1000);
+    </script>
+
+</body>
+</html>
