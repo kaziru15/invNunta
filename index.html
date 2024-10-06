@@ -32,47 +32,22 @@
             filter: brightness(50%) blur(3px); /* Luminozitate redusă și efect de blur pentru claritate la text */
         }
 
-        /* Container pentru detaliile invitației */
-        .invitation-details {
-            position: relative;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(0, 0, 0, 0.7); /* Fundal semi-transparent */
-            padding: 30px;
-            border-radius: 20px;
-            width: 90%;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7); /* Umbra subtile pentru efect 3D */
-            opacity: 0;
-            animation: fadeIn 2s forwards; /* Animație fade-in */
-        }
-
         /* Stil pentru titlul invitației */
         h1 {
             font-family: 'Great Vibes', cursive;
             font-size: 3em;
             margin-bottom: 10px;
-            animation: slideDown 1s ease-out; /* Animație de glisare pentru titlu */
+            opacity: 0;
+            animation: fadeIn 2s forwards; /* Animație fade-in */
         }
 
         /* Stil pentru detalii */
-        p {
+        .invitation-text {
             font-size: 1.3em;
             line-height: 1.5;
             margin: 10px 0;
             opacity: 0;
-            animation: fadeInText 2s forwards 1.5s; /* Animație de fade-in pentru text */
-        }
-
-        /* Separator elegant între secțiuni */
-        .separator {
-            width: 50px;
-            height: 3px;
-            background-color: #fff;
-            margin: 20px auto;
-            animation: slideDown 1s ease-out 0.5s;
-            opacity: 0;
-            animation-fill-mode: forwards;
+            animation: fadeInText 2s forwards; /* Animație de fade-in pentru text */
         }
 
         /* Countdown timer */
@@ -83,7 +58,8 @@
             background-color: rgba(255, 255, 255, 0.1);
             padding: 10px;
             border-radius: 10px;
-            animation: fadeIn 2s forwards 2.5s;
+            opacity: 0;
+            animation: fadeIn 2s forwards 2.5s; /* Animație pentru countdown */
         }
 
         /* Stil adaptat pentru ecrane mici */
@@ -91,7 +67,7 @@
             h1 {
                 font-size: 2.5em;
             }
-            p {
+            .invitation-text {
                 font-size: 1.1em;
             }
         }
@@ -107,11 +83,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes slideDown {
-            from { transform: translateY(-50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
     </style>
 </head>
 <body>
@@ -123,20 +94,17 @@
     </video>
 
     <!-- Detaliile invitației -->
-    <div class="invitation-details">
-        <h1>Mihaela & Robert</h1>
-        <div class="separator"></div> <!-- Separator elegant -->
-        <p>Vă invităm cu drag să sărbătoriți împreună cu noi în cea mai importantă zi din viața noastră.</p>
-        <p>14 Iunie 2025</p>
-        <p>Restaurantul "Chateau Blanc"</p>
-        <p>Ora: 17:00</p>
-        <p>Vă așteptăm cu mult drag și entuziasm!</p>
+    <h1>Mihaela & Robert</h1>
+    <div class="invitation-text" style="animation-delay: 1.5s;">Vă invităm cu drag să sărbătoriți împreună cu noi în cea mai importantă zi din viața noastră.</div>
+    <div class="invitation-text" style="animation-delay: 3s;">14 Iunie 2025</div>
+    <div class="invitation-text" style="animation-delay: 4.5s;">Restaurantul "Chateau Blanc"</div>
+    <div class="invitation-text" style="animation-delay: 6s;">Ora: 17:00</div>
+    <div class="invitation-text" style="animation-delay: 7.5s;">Vă așteptăm cu mult drag și entuziasm!</div>
 
-        <!-- Countdown Timer -->
-        <div class="countdown">
-            <p>Până la marele eveniment mai sunt:</p>
-            <span id="countdown-timer"></span>
-        </div>
+    <!-- Countdown Timer -->
+    <div class="countdown">
+        <p>Până la marele eveniment mai sunt:</p>
+        <span id="countdown-timer"></span>
     </div>
 
     <script>
